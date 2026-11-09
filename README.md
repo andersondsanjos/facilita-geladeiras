@@ -1,27 +1,20 @@
-# Tosa BABY — clone técnico de validação
+# Facilita Geladeiras
 
-Clone independente da página de vendas Tosa BABY para validar o funil existente em uma nova hospedagem.
+Página de vendas do **Facilita Geladeiras — Guia de Decisões e Consulta para Frost Free**.
 
-## Objetivo desta primeira versão
+## Estado da publicação
 
-- Preservar conteúdo, imagens, os dois planos e os links de checkout atuais.
-- Preservar o Pixel Meta e os scripts de rastreamento identificados na página original.
-- Registrar eventos próprios de página, leitura e clique nos CTAs, sem alterar os produtos nem a campanha original.
-- Publicar em um projeto Vercel separado para o teste manual.
+- Página pública de revisão.
+- Checkout, Pixel, API de Conversões e rastreamento serão adicionados somente com os dados específicos desta oferta.
+- Nenhum código, checkout ou rastreamento de outra oferta deve ser reutilizado neste projeto.
 
-## Dois caminhos de compra
+## Conteúdo visual
 
-| Plano | Preço | Checkout |
-| --- | ---: | --- |
-| Básico | R$ 17,90 | Wiapy `ib4ygmGeY1IZ` |
-| Completo + bônus | R$ 27,90 | Wiapy `n_zHK0Dgs_YY` |
+- `assets/mockups/`: mockups do produto principal e dos bônus.
+- `assets/vitrine/`: telas reais de consulta que aparecem no carrossel da página.
 
-## Eventos da página
+## Próximas configurações
 
-- `PageView`: carregamento da página, pelo Pixel Meta existente.
-- `ViewContent`: conteúdo da oferta carregado.
-- `tosa_scroll_depth`: marcos de 25%, 50%, 75% e 100% de leitura.
-- `tosa_cta_click`: clique no CTA, com o plano selecionado.
-- `InitiateCheckout`: saída intencional para o checkout correspondente.
-
-Eventos de geração/cópia de Pix e aprovação de pagamento acontecem dentro da Wiapy. Eles serão conferidos na Wiapy, Meta e Cashflow no teste de ponta a ponta.
+1. Inserir os dois links de checkout: plano básico e plano completo.
+2. Inserir Pixel, API de Conversões e script Cashflow próprios da oferta.
+3. Fazer a validação de ponta a ponta antes de investir em campanha.

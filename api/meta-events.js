@@ -58,9 +58,22 @@ export default async function handler(request, response) {
       }
     );
 
+    const metaResult = await metaResponse.json().catch(() => ({}));
     if (!metaResponse.ok) {
+      console.error(JSON.stringify({
+        service: 'meta-conversions-api',
+        event: body.eventName,
+        status: metaResponse.status,
+        error: metaResult?.error?.message || 'Unknown Meta API error'
+      }));
       return response.status(502).json({ error: 'Conversion API unavailable' });
     }
+
+    console.log(JSON.stringify({
+      service: 'meta-conversions-api',
+      event: body.eventName,
+      received: metaResult.events_received || 0
+    }));
     return response.status(204).end();
   } catch {
     return response.status(204).end();

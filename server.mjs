@@ -28,4 +28,6 @@ async function staticFile(req, res) {
   if (!requested.startsWith(root + path.sep) && requested !== path.join(root, 'index.html')) return reply(res, 403, { error: 'forbidden' });
   try { const info = await stat(requested); if (!info.isFile()) throw new Error('not_file'); const extension = path.extname(requested).toLowerCase(); res.writeHead(200, { 'content-type': types[extension] || 'application/octet-stream', 'cache-control': extension === '.html' ? 'no-cache' : 'public, max-age=3600' }); res.end(await readFile(requested)); } catch { res.writeHead(404, { 'content-type': 'text/plain; charset=utf-8' }); res.end('Página não encontrada'); }
 }
-http.createServer((req, res) => req.url?.startsWith('/api/meta-events') ? metaEvent(req, res) : staticFile(req, res)).listen(port);
+process.on('uncaughtException', error => console.error('uncaught_exception', error));
+process.on('unhandledRejection', error => console.error('unhandled_rejection', error));
+http.createServer((req, res) => req.url?.startsWith('/api/meta-events') ? metaEvent(req, res) : staticFile(req, res)).listen(port, () => console.log(`server_listening:${port}`));
